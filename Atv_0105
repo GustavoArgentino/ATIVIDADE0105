@@ -1,0 +1,118 @@
+QUESTÃO 1
+
+const mysql = require('mysql2');
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'phpmyadmin',
+  password: 'aluno',
+  database: 'ATIVIDADE3304'
+});
+
+connection.connect();
+
+const queryString = "SELECT * FROM CARROS WHERE COR='verde'";
+
+connection.query(queryString, (error, results, fields) => {
+  if (error) {
+    console.error('Erro ao executar consulta:', error);
+    return;
+  }
+  console.log('Resultado da consulta:');
+  console.log(results);
+});
+  
+
+
+QUESTÃO 2
+
+const mysql = require('mysql2');
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'phpmyadmin',
+  password: 'aluno',
+  database: 'ATIVIDADE3304'
+});
+ connection.connect();
+
+    const queryString = 'SELECT * FROM LOCAÇÕES WHERE CODCARRO = 3;';
+
+    connection.query(queryString, (error, results, fields) => {
+      if (error) throw error;
+      console.log('Resultado da consulta:');
+      console.log(results);
+    });
+
+    connection.end();
+
+
+QUESTÃO 3 
+
+const mysql = require('mysql2');
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'phpmyadmin',
+  password: 'aluno',
+  database: 'ATIVIDADE3304'
+});
+const queryString = 
+    'SELECT ' +
+    '    L.CÓDIGO AS CÓDIGO_LOCACAO, ' +
+    '    L.DATA_LOC, ' +
+    '    L.DATA_DEVOLUÇÃO, ' +
+    '    L.KM_SAÍDA, ' +
+    '    L.KM_ENTREGA, ' +
+    '    C.NOME_CLIENTE, ' +
+    '    C.TELEFONE, ' +
+    '    CARROS.NOME_CARRO, ' +
+    '    CARROS.COR, ' +
+    '    CARROS.COMBUSTÍVEL ' +
+    'FROM ' +
+    '    LOCAÇÕES L ' +
+    'INNER JOIN ' +
+    '    CARROS ON L.CODCARRO = CARROS.CÓDIGO ' +
+    'INNER JOIN ' +
+    '    CLIENTES C ON L.CODCLIENTE = C.CÓDIGO ' +
+    'WHERE ' +
+    '    CARROS.COMBUSTÍVEL IN ("Gasolina", "Etanol")';
+
+connection.connect();
+
+
+connection.query(queryString, (error, results, fields) => {
+  // Fechar conexão com o banco de dados
+  connection.end();
+
+  if (error) {
+    console.error('Erro ao executar consulta:', error);
+    return;
+  }
+
+  console.log('Resultado da consulta:');
+  console.log(results);
+});
+
+
+QUESTÃO 4
+
+const mysql = require('mysql2');
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'phpmyadmin',
+  password: 'aluno',
+  database: 'ATIVIDADE3304'
+});
+connection.connect();
+
+    const queryString = ' SELECT * FROM CARROS WHERE ESTÁ_DISPONIVEL = "SIM"';
+
+    connection.query(queryString, (error, results, fields) => {
+      if (error) throw error;
+      console.log('Resultado da consulta:');
+      console.log(results);
+    });
+
+    connection.end();
